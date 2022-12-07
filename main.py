@@ -443,7 +443,7 @@ def main():
 
 	parser = argparse.ArgumentParser()
 
-	parser.add_argument('--imagetype',type=str,required=False,default='xf')
+	parser.add_argument('--imagetype',type=str,required=False,default='yf')
 	parser.add_argument('--lam',type=float,required=False,default=0.3)
 	parser.add_argument('--down_factor',type=int,required=False,default=8)
 	parser.add_argument('--train_session',type=int,required=False,default=1)
@@ -471,7 +471,7 @@ def main():
 
 	#inizializza variabili globali
 	num_x_points = args.num_x_points
-	num_y_points = args.num_x_points
+	num_y_points = args.num_y_points
 	num_freqs = args.num_freqs
 	x = np.arange(0,num_x_points,1).tolist() # x-axis
 	y = np.arange(0,num_y_points,1).tolist() # y-axis

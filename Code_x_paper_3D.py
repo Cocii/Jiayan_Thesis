@@ -236,7 +236,7 @@ def main():
 
                     interp_tens = griddata(points, values, (grid_y, grid_x, grid_freq), method='nearest')
 
-                elif args.interp_func=='Linear':
+                elif args.interp_func=='linear':
                     # LINEAR INTERPOLATOR
                     if idx==0:
                         print('')
