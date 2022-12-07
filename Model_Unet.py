@@ -64,6 +64,7 @@ def bottleneck(x, filters, kernel_size=(3, 3), padding="same", strides=1):
 
 
 def uNet1(first_dim,second_dim):
+    print("=====================first_dim:",first_dim,"=====================second_dim:",second_dim)
     f = [16, 32, 64, 128, 256]
     inputs = input_img = Input((first_dim, second_dim, 1))  #le due dimensioni devono essere potenze di 2!!  the two dimensions must be powers of 2!!!
     
