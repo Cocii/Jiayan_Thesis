@@ -52,6 +52,27 @@ def nmse(target, output):
     nmse = 20*np.log10(nmse)
     return nmse
 
+def nmse_complex(target, output):
+    """
+    Using Numpy
+    """
+    """
+    :param target: groundtruth
+    :param output: prediction
+    :return: normalized mean squared error
+    """
+    if isinstance(target[:,:,0], np.complex):
+        errors = np.sqrt((target[:,:,0] - output[:,:,0])**2 + (target[:,:,1] - output[:,:,1])**2)
+        mean_error = np.mean(errors)
+        complex_target = target[:,:,0] + target[:,:,1] * 1j
+
+        mean_true = np.mean(np.abs(complex_target))
+        nmse = mean_error**2 / mean_true**2 
+    else:
+        nmse = np.mean((target - output) ** 2) / (np.mean(target ** 2))
+    nmse = 20*np.log10(nmse)
+    return nmse
+
 def psnr(target, output):
     """
     :param target: groundtruth
@@ -64,6 +85,21 @@ def psnr(target, output):
     max = 1.0
     psnr = 10*log10(max**2/mse)
     return psnr
+
+# def psnr_complex(target, output):
+#     """
+#     :param target: groundtruth
+#     :param output: prediction
+#     :return: peack signal to noise ratio in dB
+#     """
+#     complex_target = target[:,:,0] + target[:,:,1] * 1j
+#     complex_output = output[:,:,0] + output[:,:,1] * 1j
+#     mse = np.mean((complex_target - complex_output) ** 2)
+#     if mse == 0:
+#         return 100
+#     max = 1.0
+#     psnr = 10*log10(max**2/mse)
+#     return psnr
 
 def ncc(target,output):
     """
