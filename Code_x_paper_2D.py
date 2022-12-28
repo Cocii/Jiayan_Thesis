@@ -26,10 +26,10 @@ config=tf.compat.v1.ConfigProto()
 session = tf.compat.v1.Session(config=config)
 
 def normalize(in_content):
-	in_content = np.abs(in_content)
-	max_el = in_content.max()
-	in_content_norm = in_content/max_el
-	return in_content_norm
+    in_content = np.abs(in_content)
+    max_el = in_content.max()
+    in_content_norm = in_content/max_el
+    return in_content_norm
 
 def prepareTestSet(init,end,x_down_factor,num_x_points,num_freqs,imgs_x_file,downsampling):
 
@@ -169,11 +169,11 @@ def main():
                     count=0
 
                     for i in range(int(num_x_points*x_down_factor)):
-                    	for j in range(num_freqs):
-                    		values[count] = ds_img[i,j]
-                    		rows[count] = i
-                    		columns[count] = j
-                    		count = count+1
+                        for j in range(num_freqs):
+                            values[count] = ds_img[i,j]
+                            rows[count] = i
+                            columns[count] = j
+                            count = count+1
 
                     rbf = Rbf(columns, rows, values, function='cubic')  # radial basis function interpolator instance
                     XI, YI = np.meshgrid(freq, x/args.down_factor)
@@ -232,7 +232,7 @@ def main():
                 elif args.downsampling=='regular':
                     uNet = load_model('./ModelCheckpoint/2D/xf/64/Regular/down'+str(down_factors[step])+'/super_res_xf_down'+str(down_factors[step])+'.h5', 
                         custom_objects = {'loss': mask_mse(batch_size=1,num_x_points=args.num_x_points),'NMSE': NMSE, 'ncc': ncc, 'ReflectionPadding2D':ReflectionPadding2D})
-                
+
                 uNet.compile(loss=mask_mse(batch_size=1,num_x_points=args.num_x_points), optimizer=opt, metrics=[NMSE, ncc])
 
                 score = uNet.evaluate(X_test, Y_test, verbose=1, batch_size=1)
